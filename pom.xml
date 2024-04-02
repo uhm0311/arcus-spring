@@ -2,7 +2,7 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
     <modelVersion>4.0.0</modelVersion>
-    <groupId>com.navercorp.arcus</groupId>
+    <groupId>com.jam2in.arcus</groupId>
     <artifactId>arcus-spring</artifactId>
     <description>Arcus as a caching provider for the Spring cache abstraction</description>
     <name>arcus-spring</name>
@@ -215,8 +215,7 @@
                         </goals>
                     </execution>
                 </executions>
-                
-            <!-- javadoc plugin for central repo
+            </plugin>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-javadoc-plugin</artifactId>
@@ -234,9 +233,6 @@
                     <nohelp>false</nohelp>
                 </configuration>
             </plugin>
-            -->
-
-            <!-- GPG signing used when deploying to the central repo
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-gpg-plugin</artifactId>
@@ -251,13 +247,20 @@
                     </execution>
                 </executions>
             </plugin>
-            -->
-
+            <plugin>
+                <groupId>org.sonatype.plugins</groupId>
+                <artifactId>nexus-staging-maven-plugin</artifactId>
+                <version>1.6.8</version>
+                <extensions>true</extensions>
+                <configuration>
+                    <serverId>ossrh</serverId>
+                    <nexusUrl>https://oss.sonatype.org</nexusUrl>
+                    <autoReleaseAfterClose>true</autoReleaseAfterClose>
+                </configuration>
             </plugin>
         </plugins>
     </build>
-    
-    <!-- Deploy via sonatype
+
     <distributionManagement>
         <snapshotRepository>
             <id>ossrh</id>
@@ -268,6 +271,4 @@
             <url>https://oss.sonatype.org/service/local/staging/deploy/maven2</url>
         </repository>
     </distributionManagement>
-    -->
-    
 </project>
