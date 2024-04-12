@@ -20,8 +20,7 @@ package com.navercorp.arcus.spring.cache.front;
 import net.sf.ehcache.Cache;
 import net.sf.ehcache.CacheManager;
 import net.sf.ehcache.Element;
-
-import javax.annotation.Nullable;
+import org.springframework.lang.Nullable;
 
 public class EhArcusFrontCache implements ArcusFrontCache {
 

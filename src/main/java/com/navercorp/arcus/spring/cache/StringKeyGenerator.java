@@ -19,8 +19,8 @@
 package com.navercorp.arcus.spring.cache;
 
 import org.springframework.cache.interceptor.KeyGenerator;
+import org.springframework.lang.Nullable;
 
-import javax.annotation.Nullable;
 import java.lang.reflect.Method;
 
 /**

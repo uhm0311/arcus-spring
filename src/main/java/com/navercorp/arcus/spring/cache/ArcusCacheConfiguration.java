@@ -20,9 +20,8 @@ package com.navercorp.arcus.spring.cache;
 import com.navercorp.arcus.spring.cache.front.ArcusFrontCache;
 import net.spy.memcached.transcoders.Transcoder;
 import org.springframework.beans.factory.InitializingBean;
+import org.springframework.lang.Nullable;
 import org.springframework.util.Assert;
-
-import javax.annotation.Nullable;
 
 public class ArcusCacheConfiguration implements InitializingBean {
 

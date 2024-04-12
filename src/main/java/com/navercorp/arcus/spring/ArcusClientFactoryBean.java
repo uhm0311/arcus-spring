@@ -26,9 +26,8 @@ import net.spy.memcached.transcoders.Transcoder;
 import org.springframework.beans.factory.DisposableBean;
 import org.springframework.beans.factory.FactoryBean;
 import org.springframework.beans.factory.InitializingBean;
+import org.springframework.lang.Nullable;
 import org.springframework.util.Assert;
-
-import javax.annotation.Nullable;
 
 public class ArcusClientFactoryBean implements FactoryBean<ArcusClientPool>,
         DisposableBean, InitializingBean {

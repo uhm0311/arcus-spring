@@ -18,21 +18,21 @@
 package com.navercorp.arcus.spring;
 
 import net.spy.memcached.ArcusClientPool;
-import org.junit.Before;
-import org.junit.Test;
-import org.junit.runner.RunWith;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
-import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
+import org.springframework.test.context.junit.jupiter.SpringExtension;
 
 import java.util.concurrent.TimeUnit;
 
-import static org.hamcrest.CoreMatchers.is;
-import static org.hamcrest.CoreMatchers.nullValue;
-import static org.junit.Assert.assertThat;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNull;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 @Deprecated
-@RunWith(SpringJUnit4ClassRunner.class)
+@ExtendWith(SpringExtension.class)
 @ContextConfiguration("/arcus_spring_arcusTemplete_test.xml")
 public class ArcusTemplateTest {
 
@@ -40,7 +40,7 @@ public class ArcusTemplateTest {
   private ArcusClientPool client;
   private ArcusTemplate arcus;
 
-  @Before
+  @BeforeEach
   public void setUp() {
     arcus = new ArcusTemplate(client.getClient());
   }
@@ -57,8 +57,8 @@ public class ArcusTemplateTest {
 
     String valueGot = (String) arcus.execute(asyncGet(key));
 
-    assertThat(worked, is(true));
-    assertThat(valueGot, is(value));
+    assertTrue(worked);
+    assertEquals(valueGot, value);
   }
 
   @Test
@@ -69,15 +69,15 @@ public class ArcusTemplateTest {
     String value = "setAndDeleteTest";
 
     Boolean setWorked = arcus.execute(createSetMethod(key, expireTime, value));
-    assertThat(setWorked, is(true));
+    assertTrue(setWorked);
 
     // when
     Boolean deleteWorked = arcus.execute(delete(key));
 
     // then
-    assertThat(deleteWorked, is(true));
+    assertTrue(deleteWorked);
     String valueGot = (String) arcus.execute(createAsyncGetMethod(key));
-    assertThat(valueGot, is(nullValue()));
+    assertNull(valueGot);
   }
 
   @Test
@@ -92,7 +92,7 @@ public class ArcusTemplateTest {
     // then
     TimeUnit.SECONDS.sleep(3); // cache가 expired 될 때까지 기다림
     String valueGot = (String) arcus.execute(createAsyncGetMethod(key));
-    assertThat(valueGot, is(nullValue()));
+    assertNull(valueGot);
   }
 
   // There is NO way to avoid deprecated warnings when import deprecated classes.

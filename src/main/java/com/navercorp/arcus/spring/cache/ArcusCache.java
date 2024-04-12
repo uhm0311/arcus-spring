@@ -28,10 +28,10 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.InitializingBean;
 import org.springframework.cache.Cache;
 import org.springframework.cache.support.SimpleValueWrapper;
+import org.springframework.lang.Nullable;
 import org.springframework.util.Assert;
 import org.springframework.util.DigestUtils;
 
-import javax.annotation.Nullable;
 import java.util.concurrent.Callable;
 import java.util.concurrent.Future;
 import java.util.concurrent.TimeUnit;
